@@ -1,0 +1,64 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>猜数字游戏</title>  
+<style>  
+    body {  
+        display: flex;  
+        justify-content: center;  
+        align-items: center;  
+        height: 100vh;  
+        background-color: #f0f0f0;  
+        font-family: Arial, sans-serif;  
+    }  
+    .game-container {  
+        text-align: center;  
+        background-color: #fff;  
+        padding: 20px;  
+        border-radius: 8px;  
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);  
+    }  
+    .guess-button {  
+        background-color: lightpurple; /* 浅紫色背景 */  
+        color: black; /* 白色文字 */  
+        border: none; /* 移除默认边框 */  
+        cursor: pointer; /* 鼠标悬停时显示手指形状 */  
+        padding: 10px 20px; /* 内边距 */  
+        font-size: 16px; /* 字体大小 */  
+        border-radius: 5px; /* 边框圆角 */  
+    }  
+</style>  
+</head>  
+<body>  
+<div class="game-container">  
+    <h1>猜数字游戏</h1>  
+    <p>我有一个1到100之间的数字，你能猜到是哪个吗？</p>  
+    <input type="number" id="guess" placeholder="输入你的猜测" min="1" max="100">  
+    <button class="guess-button" onclick="checkGuess()">猜测</button>  
+    <p id="feedback"></p>  
+</div>  
+  
+<script>  
+    let targetNumber = Math.floor(Math.random() * 100) + 1; // 生成1到100之间的随机数  
+    let guesses = 0; // 记录猜测次数  
+  
+    function checkGuess() {  
+        const guess = parseInt(document.getElementById('guess').value, 10); // 获取用户输入并转换为整数  
+        guesses++; // 增加猜测次数  
+  
+        const feedbackElement = document.getElementById('feedback');  
+  
+        if (guess < targetNumber) {  
+            feedbackElement.textContent = '太低了！再试试看？';  
+        } else if (guess > targetNumber) {  
+            feedbackElement.textContent = '太高了！再试试看？';  
+        } else {  
+            feedbackElement.textContent = `恭喜你，猜对了！数字就是${targetNumber}。你总共猜了${guesses}次。`;  
+            // 可以在这里添加代码来重置游戏或进行其他操作  
+        }  
+    }  
+</script>  
+</body>  
+</html>
